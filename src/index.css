@@ -1,0 +1,907 @@
+/* src/index.css */
+/* GLOBAL RESET */
+* { margin:0; padding:0; box-sizing:border-box; font-family:'Roboto', sans-serif; }
+body { background:#fff; color:#111827; overflow-x:hidden;}
+
+/* HERO */
+.hero {
+    background-color: #282a2c;
+    color:#fff;
+    text-align:center;
+    padding:60px 20px 70px 20px;
+    position:relative;
+    overflow:hidden;
+}
+.hero-header {
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+.hero-header .logo { width:80px; border-radius:50%; }
+.hero-header h1 { font-family:'Montserrat',sans-serif; font-size:48px; font-weight:700; }
+.hero p { font-size:28px; margin-bottom:30px; opacity:.9; }
+
+/* GLASS EFFECT CLASS */
+.glass {
+    background: rgba(255,255,255,0.12);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border:1px solid rgba(255,255,255,0.25);
+    border-radius:12px;
+    transition: all 0.4s ease;
+    text-decoration: none;
+}
+
+/* NAV BLOCKS CONTAINER */
+.nav-blocks {
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:20px;
+    margin:-60px 20px 60px;
+    perspective: 1000px;
+    position:relative;
+}
+
+/* INDIVIDUAL BLOCKS */
+.block {
+    color:white;
+    flex:1 1 200px;
+    max-width:250px;
+    padding:35px 16px;
+    text-align:center;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.15);
+    cursor:pointer;
+    opacity:0;
+    transform: translateY(60px);
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background 0.3s ease;
+    text-decoration: none;
+    position: relative;
+    overflow: hidden;
+}
+.block h2 {
+    font-size:25px;
+    margin-bottom:10px;
+    text-decoration: none; /* remove underline */
+}
+
+.block span.arrow { font-size:28px; margin-left:5px; transition:.3s; }
+
+/* HOVER EFFECTS */
+
+.block:hover {
+    transform: translateY(-10px) scale(1.05);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.25);
+    background: rgba(138, 150, 168, 0.8);
+    color:#fff;
+}
+
+.block:hover span.arrow { transform: translateX(10px); }
+
+/* ACTIVE / SELECTED STATE */
+.block.active {
+    background: rgba(255,255,255,0.25) !important;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.35) !important;
+    transform: scale(1.08) !important;
+    border: 1px solid rgba(255, 255, 255, 0.45) !important;
+}
+
+/* STAGGERED FLOAT-IN ANIMATION */
+@keyframes floatIn {
+    0% { opacity:0; transform: translateY(60px); }
+    60% { opacity:1; transform: translateY(-10px); }
+    100% { opacity:1; transform: translateY(0); }
+}
+.block:nth-child(1){ animation: floatIn 0.8s ease-out forwards; animation-delay:0.2s; }
+.block:nth-child(2){ animation: floatIn 0.8s ease-out forwards; animation-delay:0.4s; }
+.block:nth-child(3){ animation: floatIn 0.8s ease-out forwards; animation-delay:0.6s; }
+.block:nth-child(4){ animation: floatIn 0.8s ease-out forwards; animation-delay:0.8s; }
+.block:nth-child(5){ animation: floatIn 0.8s ease-out forwards; animation-delay:1s; }
+
+/*-------------about us----------------*/
+.about-section {
+    padding: 80px 5%;
+    background: #e2e3e7;
+}
+
+.about-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+/* About image with hover zoom */
+.about-image img {
+    width: 420px;
+    height: auto;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: transform 0.6s ease;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+}
+
+.about-image img:hover {
+    transform: scale(1.15);
+}
+
+/* About content text */
+.about-content {
+    width: 55%;
+    opacity: 0;
+    transform: translateX(50px);
+    transition: all 1s ease;
+}
+
+.about-content.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.about-content h2 {
+    font-size: 38px;
+    margin-bottom: 15px;
+    color: #022158;
+    font-weight: 700;
+}
+
+.about-content p {
+    margin-top: 10px;
+    line-height: 1.7;
+    font-size: 18px;
+    color: #333;
+}
+
+.know-more-btn {
+    display: inline-block;
+    padding: 12px 20px;
+    background: #022158;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 8px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.know-more-btn:hover {
+    background: green;
+}
+
+/*--------who we are--------*/
+
+/* Section images */
+.section-image-left, .section-image-right {
+    flex: 1;
+    max-width: 450px;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.section-image-left img, .section-image-right img {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.5s ease;
+}
+
+.section-image-left img:hover, .section-image-right img:hover {
+    transform: scale(1.05);
+}
+
+/* Slide-in from left/right */
+.section-image-left { transform: translateX(-100%); }
+.section-image-right { transform: translateX(100%); }
+
+/* Visible after scroll */
+.section-content.visible,
+.section-image-left.visible,
+.section-image-right.visible {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+/* SECTION LAYOUT */
+.section {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    max-width: 1200px;
+    margin: 60px auto;
+    gap: 20px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.section-content {
+    flex: 1;
+    opacity: 0;
+    transition: all 1s ease;
+}
+
+.section-content.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* WHO WE ARE TEXT */
+.section-content h2, .section-content h3 {
+    color: #022158;
+    margin-bottom: 15px;
+}
+
+.section-content h2 { 
+    font-size: 38px; 
+    text-align: center;
+}
+
+.section-content h3 { 
+    font-size: 24px;
+    color: rgb(2, 100, 2); 
+}
+
+.section-content p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* COLLAB IMAGES */
+.collab-images {
+    flex: 1;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    justify-items: center;
+}
+
+.collab-images img {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.collab-images img:hover {
+    transform: scale(1.05);
+}
+
+/* CARDS FOR VALUES */
+.values-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 60px auto;
+}
+
+.value-card {
+    background: #e2e3e7;
+    flex: 1 1 250px;
+    max-width: 280px;
+    padding: 30px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.value-card:hover { transform: translateY(-8px); box-shadow: 0 10px 20px rgba(0,0,0,0.15); }
+
+.value-card h3 { 
+     font-size: 22px; 
+     margin-bottom: 10px; 
+     color:#022158; 
+    }
+.value-card p { 
+    font-size: 16px; 
+    color: #333; }
+
+/* WHY WORK WITH US */
+.why-container {
+    max-width: 1200px;
+    margin: 10px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    flex-wrap: wrap; /* responsive */
+}
+
+.why-text {
+    flex: 1;
+}
+
+.why-text h2 {
+    font-size: 36px;
+    color: #022158;
+    margin-bottom: 10px;
+}
+
+.why-text p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: #333;
+}
+
+.why-image {
+    flex: 1;
+    text-align: right;
+}
+
+.why-image img {
+    width: 100%;
+    max-width: 450px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+/* OPEN POSITIONS */
+.jobs {
+    text-align: center;
+    font-size: 28px;
+    color: #022158;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.open-positions {
+    max-width: 1200px;
+    margin: 60px auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    padding: 0 20px;
+}
+
+.job-card {
+    background: #e2e3e7;
+    flex: 1 1 300px;
+    max-width: 350px;
+    padding: 20px 20px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.job-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+}
+
+.job-card h3 {
+    font-size: 22px;
+    color: #14042f;
+    margin-bottom: 5px;
+}
+
+.job-card p {
+    font-size: 16px;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.apply-btn {
+    display: inline-block;
+    padding: 10px 25px;
+    background-color: #022158;
+    color: #fff;
+    font-weight: bold;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.apply-btn:hover {
+    background-color: #3b82f6;
+    transform: translateY(-3px);
+}
+
+ .modal-content {
+          background:#fff;
+          width:100%;
+          max-width:600px;
+          padding:25px;
+          border-radius:12px;
+          position:relative;
+        }
+
+        .close { font-size:28px; cursor:pointer; position:absolute; right:20px; top:10px;}
+
+        /* Popup */
+        .popup-bg {
+          position:fixed;
+          top:0; left:0; width:100%; height:100%;
+          background:rgba(0,0,0,0.6);
+          display:flex;
+          justify-content:center;
+          align-items:center;
+          z-index:2000;
+        }
+
+        .popup-box {
+          background:#fff;
+          padding:25px 30px;
+          border-radius:15px;
+          text-align:center;
+          width:85%;
+          max-width:350px;
+          box-shadow:0 4px 20px rgba(0,0,0,0.2);
+          animation:pop 0.3s ease;
+        }
+        @keyframes pop { from{transform:scale(0.8); opacity:0;} to{transform:scale(1); opacity:1;} }
+
+        /* Application Form */
+        .apply-form { display:flex; flex-direction:column; gap:15px; margin-top:10px; }
+        .apply-form input, .apply-form select, .apply-form textarea {
+          padding:12px;
+          border:1px solid #ccc;
+          border-radius:8px;
+          background:#fafafa;
+        }
+
+        .apply-form button {
+          padding:12px;
+          background:#1e3a8a;
+          color:#fff;
+          border:none;
+          border-radius:8px;
+          font-size:16px;
+          cursor:pointer;
+        }
+
+/* CONTACT & MAP */
+.contact-map-container {
+    display: flex;
+    gap: 30px;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    padding: 40px 20px;
+}
+
+.contact-box {
+    background: #e2e3e7;
+    width: 550px;
+    max-width: 100%;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+}
+
+.contact-box h2 {
+    margin-bottom: 15px;
+    font-size: 34px;
+    color: #022158;
+    text-align: center;
+}
+
+.contact-box input,
+.contact-box textarea {
+    width: 100%;
+    padding: 12px;
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    font-size: 16px;
+}
+
+.contact-box textarea {
+    height: 100px;
+}
+
+.contact-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    border: none;
+    background: green;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: .3s;
+}
+
+.contact-box button:hover {
+    background: #2d8a2d;
+}
+
+/* MAP */
+.map {
+    width: 550px;
+    min-width: 300px;
+    height: 420px;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 0 12px rgba(0,0,0,0.15);
+}
+
+
+/* SUCCESS POPUP */
+.popup {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(0,0,0,0.6);
+    z-index: 9999;
+}
+
+.popup-box {
+    background: #fff;
+    padding: 30px;
+    width: 320px;
+    text-align: center;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+}
+
+.popup-box h3 {
+    margin-bottom: 10px;
+    font-size: 22px;
+    color: #2d8a2d;
+}
+
+.popup-box button {
+    padding: 10px 20px;
+    margin-top: 15px;
+    border: none;
+    background: #2d8a2d;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+/* MODAL */
+.modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    padding: 20px;
+}
+.modal-box {
+    width: 900px;
+    max-width: 100%;
+    background: #fff;
+    border-radius: 12px;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+}
+.modal-box .close {
+    position: absolute;
+    right: 14px;
+    top: 10px;
+    background: transparent;
+    border: none;
+    font-size: 22px;
+    cursor: pointer;
+}
+
+/* ZOOM OVERLAY */
+.zoom-overlay {
+    position: fixed;
+    top:0; left:0;
+    width:100%;
+    height:100%;
+    background: rgba(0,0,0,0.85);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:10000;
+}
+.zoom-overlay img {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 12px;
+}
+
+/* FOOTER */
+footer {
+  background-color: #022158;
+  color: #fff;
+  padding: 40px 20px;
+  font-family: Arial, sans-serif;
+}
+
+.footer-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-col {
+  flex: 1 1 0;
+  min-width: 200px;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+.footer-col h3 {
+  margin-bottom: 15px;
+  font-size: 22px;
+}
+.footer-col p {
+  margin-bottom: 15px;
+}
+
+
+.footer-col ul {
+  list-style: none;
+  padding: 0;
+}
+
+.footer-col ul li {
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+.footer-col ul li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.social-links a {
+  color: #fff;
+  font-size: 18px;
+  margin-right: 15px;
+  transition: color 0.3s;
+  text-decoration: none;
+}
+
+.social-links a:hover {
+  color: #1da1f2;
+}
+
+/* -------------------------------------------------------------------
+   RESPONSIVE LAYOUT (complete, non-destructive)
+   Breakpoints: 1024px, 768px, 480px
+   These rules only change layout/spacing/sizing for smaller screens.
+------------------------------------------------------------------- */
+
+/* ----- Large tablets & small desktops (<= 1024px) ----- */
+@media (max-width: 1024px) {
+
+    /* Hero scaling */
+    .hero-header h1 { font-size: 40px; }
+    .hero p { font-size: 22px; }
+
+    /* Nav blocks */
+    .nav-blocks { gap: 18px; margin: -40px 16px 40px; }
+    .block { max-width: 300px; padding: 32px 14px; }
+
+    /* About */
+    .about-container { gap: 30px; }
+    .about-image img { width: 360px; }
+
+    /* Sections */
+    .section { margin: 40px auto; gap: 18px; }
+    .section-image-left, .section-image-right { max-width: 420px; }
+
+    /* Jobs */
+    .open-positions { gap: 24px; padding: 0 12px; }
+
+    /* Contact/map */
+    .contact-map-container { padding: 30px 16px; gap: 24px; }
+    .contact-box, .map { width: 100%; max-width: 650px; }
+
+    /* Modal */
+    .modal-box { width: 90%; max-width: 900px; padding: 16px; }
+
+    /* Footer */
+    .footer-container { padding: 0 12px; }
+}
+
+/* ----- Tablets & larger phones (<= 768px) ----- */
+@media (max-width: 768px) {
+
+    /* HERO */
+    .hero {
+        padding:40px 16px 50px;
+    }
+    .hero-header {
+        flex-direction: column;
+    }
+    .hero-header .logo { width: 68px; }
+    .hero-header h1 { font-size: 32px; text-align:center; }
+    .hero p { font-size: 18px; }
+
+    /* NAV BLOCKS */
+    .nav-blocks {
+        margin-top: -40px;
+        gap: 14px;
+        justify-content: center;
+    }
+    .block {
+        max-width: 90%;
+        flex: 1 1 320px;
+        padding: 24px 14px;
+    }
+    .block h2 { font-size: 18px; }
+
+    /* ABOUT SECTION */
+    .about-container {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 20px;
+    }
+    .about-image img {
+        width: 90%;
+        max-width: 420px;
+    }
+    .about-content {
+        width: 100%;
+    }
+    .about-content h2 { font-size: 30px; }
+    .about-content p { font-size: 15px; line-height:1.6; }
+
+    /* SECTION (WHO WE ARE, VALUES, COLLAB) */
+    .section {
+        flex-direction: column;
+        text-align: center;
+        padding: 0 12px;
+        gap: 26px;
+    }
+    .section-image-left, .section-image-right {
+        max-width: 100%;
+        transform: translateX(0); /* avoid off-screen transforms on small screens */
+        opacity: 1;
+    }
+    .section-content { width: 100%; opacity: 1; transform: translateX(0); }
+
+    .section-content h2 { font-size: 30px; }
+    .section-content h3 { font-size: 20px; }
+    .section-content p { font-size: 16px; }
+
+    /* COLLAB IMAGES */
+    .collab-images { grid-template-columns: repeat(2, 1fr); gap: 8px; width: 100%; }
+
+    /* VALUES CARDS */
+    .values-cards { gap: 16px; padding: 0 12px; }
+    .value-card { max-width: 92%; }
+
+    /* WHY WORK WITH US */
+    .why-container { flex-direction: column; align-items: center; text-align: center; padding: 0 12px; }
+    .why-text h2 { font-size: 28px; }
+    .why-image { text-align: center; }
+    .why-image img { max-width: 90%; }
+
+    /* OPEN POSITIONS */
+    .open-positions {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 18px;
+        padding: 0 12px;
+    }
+    .job-card { max-width: 92%; }
+
+    /* CONTACT & MAP */
+    .contact-map-container {
+        flex-direction: column;
+        align-items: center;
+        padding: 20px 12px;
+        gap: 18px;
+    }
+    .contact-box {
+        width: 100%;
+        padding: 20px;
+    }
+    .contact-box h2 { font-size: 26px; }
+    .map {
+        width: 100%;
+        height: 360px;
+        min-width: 0;
+    }
+
+    /* POPUP/MODAL */
+    .popup-box { width: 90%; max-width: 360px; padding: 20px; }
+    .modal-box { width: 95%; padding: 14px; }
+
+    /* Footer */
+    .footer-container { flex-direction: column; align-items: flex-start; gap: 12px; padding: 0 12px; }
+    .footer-col { width: 100%; min-width: auto; }
+}
+
+/* ----- Small phones (<= 480px) ----- */
+@media (max-width: 480px) {
+
+    /* HERO */
+    .hero { padding: 32px 12px 40px; }
+    .hero-header { gap: 10px; }
+    .hero-header .logo { width: 60px; }
+    .hero-header h1 { font-size: 24px; }
+    .hero p { font-size: 15px; margin-bottom: 20px; }
+
+    /* NAV BLOCKS */
+    .nav-blocks { margin: -30px 10px 30px; gap: 12px; }
+    .block {
+        max-width: 100%;
+        padding: 18px 12px;
+    }
+    .block h2 { font-size: 16px; }
+
+    /* ABOUT */
+    .about-image img { width: 96%; }
+    .about-content h2 { font-size: 22px; }
+    .about-content p { font-size: 14px; }
+
+    /* SECTION */
+    .section { padding: 0 10px; gap: 18px; margin: 30px auto; }
+    .section-content h2 { font-size: 24px; }
+    .section-content h3 { font-size: 18px; }
+    .section-content p { font-size: 14px; line-height:1.5; }
+
+    /* COLLAB IMAGES */
+    .collab-images { grid-template-columns: 1fr 1fr; gap:8px; }
+
+    /* VALUES CARD */
+    .value-card { padding: 22px 16px; max-width: 96%; }
+
+    /* WHY */
+    .why-text h2 { font-size: 22px; }
+    .why-text p { font-size: 15px; }
+
+    /* JOBS */
+    .job-card { padding: 16px; max-width: 98%; }
+    .job-card h3 { font-size: 20px; }
+    .job-card p { font-size: 14px; }
+
+    /* CONTACT & MAP */
+    .contact-box h2 { font-size: 22px; }
+    .contact-box input, .contact-box textarea { font-size: 14px; padding: 10px; }
+    .contact-box button { font-size: 16px; padding: 10px; }
+
+    .map { height: 300px; width: 100%; }
+
+    /* POPUP/MODAL */
+    .popup-box { width: 92%; padding: 18px; }
+    .modal-box { width: 96%; max-height: 92vh; overflow: auto; padding: 12px; }
+
+    /* ZOOM OVERLAY */
+    .zoom-overlay img { max-width: 95%; max-height: 95%; border-radius:8px; }
+
+    /* FOOTER */
+    footer { padding: 24px 12px; }
+    .footer-col h3 { font-size: 18px; }
+    .footer-col p, .footer-col ul li { font-size: 14px; }
+    .social-links a { font-size: 16px; margin-right: 10px; }
+
+    /* Minor tweaks to avoid horizontal scroll on very narrow devices */
+    .nav-blocks, .about-section, .section, .contact-map-container, .open-positions {
+        padding-left: 6px;
+        padding-right: 6px;
+    }
+}
+
+/* Accessibility: reduce transform motion for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .block, .about-image img, .section-image-left img, .section-image-right img, .collab-images img, .value-card {
+        transition: none !important;
+        animation: none !important;
+    }
+}
+
+
+
