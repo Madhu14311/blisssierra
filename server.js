@@ -6,7 +6,9 @@ const fs = require("fs");
 const path = require("path");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "https://frontendd-git-main-madhu14311s-projects.vercel.app/"
+}));
 app.use(express.json());
 
 const uploadDir = path.join(__dirname, "uploads");
@@ -97,4 +99,5 @@ Message: ${message}
 app.listen(5000, () => {
   console.log("Server running on port 5000");
 });
+
 
